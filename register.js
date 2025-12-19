@@ -59,9 +59,17 @@ if (registerForm) {
     });
 }
 
-// Check if already logged in
+// Check if already logged in (Must have BOTH token and shopId)
 window.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('token')) {
+    const token = localStorage.getItem('token');
+    const shopId = localStorage.getItem('shopId');
+
+    if (token && shopId) {
         window.location.href = 'dashboard.html';
+    } else if (token || shopId) {
+        // Clear inconsistent state
+        localStorage.removeItem('token');
+        localStorage.removeItem('shopId');
+        localStorage.removeItem('businessName');
     }
 });

@@ -106,5 +106,13 @@ function checkShopStatus() {
     }
 }
 
-// Initialize
-window.addEventListener('DOMContentLoaded', checkShopStatus);
+// Check if already logged in (Must have BOTH token and shopId)
+window.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+    const shopId = localStorage.getItem('shopId');
+
+    if (token && shopId) {
+        window.location.href = 'dashboard.html';
+    }
+    checkShopStatus();
+});
