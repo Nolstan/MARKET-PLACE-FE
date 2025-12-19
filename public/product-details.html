@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | StoreSync</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="details-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-shopping-bag"></i></span>
+                Store<span>Sync</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">Shop</a>
+                <a href="login.html" class="btn-login">Partner Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div id="loading" class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Fetching product details...</p>
+        </div>
+
+        <div id="productDetails" class="product-details-container hidden">
+            <div class="details-grid">
+                <div class="details-image-section">
+                    <img id="productImage" src="" alt="Product Image">
+                    <div id="productCategory" class="details-badge">Category</div>
+                </div>
+                <div class="details-info-section">
+                    <a href="products.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Shop</a>
+                    <h1 id="productName" class="details-title">Product Name</h1>
+                    <div class="details-owner">
+                        <i class="fas fa-user-circle"></i>
+                        <div>
+                            <span class="owner-label">Listed by</span>
+                            <span id="ownerName" class="owner-value">Owner Name</span>
+                        </div>
+                    </div>
+
+                    <div class="details-price-tag">
+                        <span class="price-label">Price</span>
+                        <span id="productPrice" class="price-value">MWK 0</span>
+                    </div>
+
+                    <div class="details-description">
+                        <h3>Description</h3>
+                        <p id="productDescription">Full product description goes here...</p>
+                    </div>
+
+                    <div class="details-actions">
+                        <button class="btn-contact"><i class="fas fa-comment-dots"></i> Contact Seller</button>
+                        <button class="btn-share"><i class="fas fa-share-alt"></i> Share</button>
+                    </div>
+
+                    <div class="business-card">
+                        <div class="business-info">
+                            <h4 id="businessName">Business Name</h4>
+                            <p id="businessLocation"><i class="fas fa-map-marker-alt"></i> Location</p>
+                            <p id="businessContact"><i class="fas fa-phone"></i> Contact Info</p>
+                            <p id="businessBio" class="business-bio">Business bio goes here...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="error" class="error-view hidden">
+            <i class="fas fa-exclamation-circle"></i>
+            <h3>Oops! Product not found</h3>
+            <p>The product you're looking for might have been removed or doesn't exist.</p>
+            <a href="products.html" class="btn-primary">Back to Shop</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 StoreSync Marketplace. All rights reserved.</p>
+    </footer>
+
+    <script src="product-details.js"></script>
+</body>
+
+</html>

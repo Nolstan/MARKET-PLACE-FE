@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Selling | Local Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                Local<span>Market</span></h1>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="login.html">Login</a>
+                <a href="sell.html" class="btn-primary active">Sell Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="auth-section">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h2>Grow Your <span>Business.</span></h2>
+                    <p>Create your business profile and start reaching local customers today.</p>
+                </div>
+
+                <form id="businessForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="businessName">Business Name</label>
+                        <input type="text" id="businessName" placeholder="e.g. Artisan Crafts Ltd." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ownerName">Owner Name</label>
+                        <input type="text" id="ownerName" placeholder="Your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Business Email</label>
+                        <input type="email" id="email" placeholder="contact@yourbusiness.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Min. 6 characters" required minlength="6">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" placeholder="e.g. Downtown, Main City" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactInfo">Contact Information</label>
+                        <textarea id="contactInfo"
+                            placeholder="Phone number, social media, or other ways customers can reach you"
+                            required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Initialize My Profile</button>
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Local Marketplace. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="sell.js"></script>
+</body>
+
+</html>

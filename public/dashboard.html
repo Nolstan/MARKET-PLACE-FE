@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard | Local Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="dashboard-body">
+    <nav class="navbar dashboard-nav">
+        <div class="container">
+            <h1 class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                Local<span>Market</span></h1>
+            <div class="nav-links">
+                <span id="shopNameDisplay" class="shop-name-badge">Loading Shop...</span>
+                <a href="index.html">Browse</a>
+                <button id="logoutBtn" class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container dashboard-main">
+        <header class="dashboard-header">
+            <div>
+                <h2>Your <span>Products</span></h2>
+                <p>Manage your inventory and reach more customers.</p>
+            </div>
+            <button id="openAddModal" class="btn-primary">+ Add New Product</button>
+        </header>
+
+        <section class="inventory-section">
+            <div id="productStats" class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Total Products</span>
+                    <span id="totalProducts" class="stat-value">0</span>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Stock Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dashboardProductGrid">
+                        <!-- Products will be loaded here -->
+                        <tr>
+                            <td colspan="4" class="loader">Loading your workspace...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Add/Edit Product -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add New Product</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="productForm" class="modal-form">
+                <input type="hidden" id="productId">
+                <div class="form-group">
+                    <label for="name">Product Name</label>
+                    <input type="text" id="name" placeholder="e.g. Handmade Ceramic Vase" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price (MWK)</label>
+                    <input type="number" id="price" step="0.01" placeholder="0.00" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" placeholder="Describe your product..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="image">Product Image</label>
+                    <input type="file" id="image" accept="image/*">
+                    <small class="form-help">Upload a high-quality image of your item.</small>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary close-modal">Cancel</button>
+                    <button type="submit" id="saveProductBtn" class="btn-submit">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StoreSync | Discover Local Treasures</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-shopping-bag"></i></span>
+                Store<span>Sync</span>
+            </a>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for products or shops...">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="products.html">Shop</a>
+                <a href="login.html">Login</a>
+                <a href="register.html" class="btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Support Local, <br>Shop <span>Extraordinary.</span></h2>
+                <p>Connecting you with the best artisans and businesses in your neighborhood.</p>
+                <div class="hero-stats">
+                    <div class="stat"><span id="productCounter">0</span> Products</div>
+                    <div class="stat"><span id="shopCounter">0</span> Shops</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <div class="section-header">
+                <h3>Latest Discoveries</h3>
+                <p>Handpicked treasures from local sellers</p>
+            </div>
+            <div id="productGrid" class="product-grid">
+                <!-- Products will be loaded here via app.js -->
+                <div class="loader">Loading amazing things...</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Local Marketplace. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace | Explore Products</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="products-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-shopping-bag"></i></span>
+                Store<span>Sync</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="products.html" class="active">Shop</a>
+                <a href="login.html" class="btn-login">Partner Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="products-hero">
+        <div class="hero-content">
+            <h1>Discover Local Treasures</h1>
+            <p>Explore high-quality products from the best local businesses in your area.</p>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search for products, categories or shops...">
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="filters-container">
+            <div class="category-pills" id="categoryPills">
+                <button class="pill active" data-category="all">All Items</button>
+            </div>
+        </div>
+
+        <div id="loading" class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Gathering fresh products...</p>
+        </div>
+
+        <div id="productGrid" class="product-grid">
+            <!-- Products will be injected here -->
+        </div>
+
+        <div id="noProducts" class="no-products hidden">
+            <i class="fas fa-box-open"></i>
+            <h3>No products found</h3>
+            <p>Try adjusting your search or filters.</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 StoreSync Marketplace. All rights reserved.</p>
+    </footer>
+
+    <script src="products.js"></script>
+</body>
+
+</html>
