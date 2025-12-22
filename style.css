@@ -57,6 +57,8 @@ body {
     font-weight: 700;
     letter-spacing: -1px;
     white-space: nowrap;
+    text-decoration: none;
+    color: inherit;
 }
 
 .logo span {

@@ -116,7 +116,13 @@ productForm.addEventListener('submit', async (e) => {
     const endpoint = productId ? `${API_URL}/products/${productId}` : `${API_URL}/products`;
     const token = localStorage.getItem('token');
 
+    const submitBtn = productForm.querySelector('.btn-submit');
+    const originalBtnText = submitBtn.innerText;
+
     try {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Saving...';
+
         const response = await fetch(endpoint, {
             method: method,
             headers: {
@@ -136,6 +142,10 @@ productForm.addEventListener('submit', async (e) => {
         }
     } catch (error) {
         console.error('Error saving product:', error);
+        alert('Failed to save product. Please try again.');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = originalBtnText;
     }
 });
 
