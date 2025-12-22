@@ -160,7 +160,7 @@ window.editProduct = async (id) => {
 
     // Quick hack: find product in table and populate basics
     // Real improvement: Fetch GET /api/products/:id (if implemented)
-    modal.style.display = 'block';
+    modal.style.display = 'flex';
 };
 
 /**
@@ -194,7 +194,7 @@ openModalBtn.onclick = () => {
     modalTitle.innerText = 'Add New Product';
     document.getElementById('productId').value = '';
     productForm.reset();
-    modal.style.display = 'block';
+    modal.style.display = 'flex';
 };
 
 closeModalBtns.forEach(btn => {
