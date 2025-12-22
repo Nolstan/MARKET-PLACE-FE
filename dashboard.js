@@ -17,6 +17,8 @@ const closeModalBtns = document.querySelectorAll('.close-modal');
 const openModalBtn = document.getElementById('openAddModal');
 const shopNameDisplay = document.getElementById('shopNameDisplay');
 const totalProductsLabel = document.getElementById('totalProducts');
+const activeStatusToggle = document.getElementById('activeStatusToggle');
+
 
 /**
  * Initialize Dashboard
@@ -35,6 +37,7 @@ async function loadShopDetails() {
         const data = await response.json();
         if (data.success) {
             shopNameDisplay.innerText = data.data.businessName;
+            activeStatusToggle.checked = data.data.isActive;
         }
     } catch (error) {
         console.error('Error loading shop details:', error);
@@ -212,5 +215,42 @@ document.getElementById('logoutBtn').onclick = () => {
     window.location.href = 'index.html';
 };
 
+/**
+ * Handle Active Status Toggle
+ */
+activeStatusToggle.addEventListener('change', async () => {
+    const newStatus = activeStatusToggle.checked;
+    await updateActiveStatus(newStatus);
+});
+
+async function updateActiveStatus(isActive) {
+    const token = localStorage.getItem('token');
+    try {
+        const response = await fetch(`${API_URL}/business/status`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ isActive })
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            // Maybe show a small notification/toast in a real app
+            console.log('Status updated successfully');
+        } else {
+            // Revert the toggle if the update fails
+            activeStatusToggle.checked = !isActive;
+            alert('Failed to update status. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error updating status:', error);
+        activeStatusToggle.checked = !isActive;
+        alert('An error occurred. Please try again.');
+    }
+}
+
 // Start
 init();
+

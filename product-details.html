@@ -60,7 +60,24 @@
 
                     <div class="details-actions">
                         <button class="btn-contact"><i class="fas fa-comment-dots"></i> Contact Seller</button>
-                        <button class="btn-share"><i class="fas fa-share-alt"></i> Share</button>
+                        <button id="placeOrderBtn" class="btn-primary"><i class="fas fa-shopping-cart"></i> Place Order</button>
+                    </div>
+
+                    <!-- Order Modal -->
+                    <div id="orderModal" class="modal-overlay hidden">
+                        <div class="modal-content">
+                            <button id="closeModalBtn" class="modal-close-btn">&times;</button>
+                            <h3>Complete Your Order</h3>
+                            <p>Enter your phone number to place the order. The seller will contact you shortly.</p>
+                            <form id="orderForm">
+                                <div class="form-group">
+                                    <label for="customerPhone">Phone Number (e.g., 099.../088...)</label>
+                                    <input type="tel" id="customerPhone" placeholder="Enter your phone number" required>
+                                </div>
+                                <div id="orderStatus"></div>
+                                <button type="submit" class="btn-primary">Submit Order</button>
+                            </form>
+                        </div>
                     </div>
 
                     <div class="business-card">
