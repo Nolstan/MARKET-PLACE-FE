@@ -109,4 +109,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial fetch
     fetchProducts();
+    fetchSellerOrders();
+
+
+    async function fetchSellerOrders() {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            return;
+        }
+
+        try {
+            const res = await fetch(`${API_URL}/orders`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            const data = await res.json();
+
+            if (data.success && data.data.length > 0) {
+                const sellerOrders = document.getElementById('sellerOrders');
+                const orderList = document.getElementById('orderList');
+                sellerOrders.classList.remove('hidden');
+                orderList.innerHTML = data.data.map(order => `
+                    <div class="order-item">
+                        <p><strong>Product:</strong> ${order.productId.name}</p>
+                        <p><strong>Price:</strong> ${new Intl.NumberFormat('en-MW', { style: 'currency', currency: 'MWK' }).format(order.productId.price)}</p>
+                        <p><strong>Customer Phone:</strong> ${order.customerPhone}</p>
+                        <p><strong>Date:</strong> ${new Date(order.createdAt).toLocaleDateString()}</p>
+                    </div>
+                `).join('');
+            }
+        } catch (error) {
+            console.error('Error fetching seller orders:', error);
+        }
+    }
 });

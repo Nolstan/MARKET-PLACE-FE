@@ -59,17 +59,8 @@ if (registerForm) {
     });
 }
 
-// Check if already logged in (Must have BOTH token and shopId)
+// Check if already logged in
 window.addEventListener('DOMContentLoaded', () => {
-    const token = localStorage.getItem('token');
-    const shopId = localStorage.getItem('shopId');
-
-    if (token && shopId) {
-        window.location.href = 'dashboard.html';
-    } else if (token || shopId) {
-        // Clear inconsistent state
-        localStorage.removeItem('token');
-        localStorage.removeItem('shopId');
-        localStorage.removeItem('businessName');
-    }
+    // We remove the auto-redirect here to allow users to see the registration page 
+    // even if they have a stale token or want to create a second shop.
 });

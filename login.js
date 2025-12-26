@@ -34,10 +34,15 @@ loginForm.addEventListener('submit', async (e) => {
             localStorage.setItem('token', data.token);
             localStorage.setItem('shopId', data.data.id);
             localStorage.setItem('businessName', data.data.businessName);
+            localStorage.setItem('role', data.data.role);
 
-            // Redirect to dashboard
+            // Redirect based on role
             setTimeout(() => {
-                window.location.href = 'dashboard.html';
+                if (data.data.role === 'admin') {
+                    window.location.href = 'admin.html';
+                } else {
+                    window.location.href = 'dashboard.html';
+                }
             }, 1000);
         } else {
             loginMessage.innerHTML = `<div class="error">❌ ${data.error || 'Invalid credentials'}</div>`;
@@ -52,17 +57,11 @@ loginForm.addEventListener('submit', async (e) => {
     }
 });
 
-// Check if already logged in (Must have BOTH token and shopId)
+// Check if already logged in (Optional: could show a "Already logged in as..." message instead of raw redirect)
 window.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('token');
-    const shopId = localStorage.getItem('shopId');
+    const role = localStorage.getItem('role');
 
-    if (token && shopId) {
-        window.location.href = 'dashboard.html';
-    } else if (token || shopId) {
-        // Clear inconsistent state
-        localStorage.removeItem('token');
-        localStorage.removeItem('shopId');
-        localStorage.removeItem('businessName');
-    }
+    // We remove the auto-redirect here to allow users to switch accounts if they want.
+    // If you want auto-redirect, you can re-enable it or add a "Logout" link.
 });

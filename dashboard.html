@@ -45,6 +45,10 @@
                     <span class="stat-label">Total Products</span>
                     <span id="totalProducts" class="stat-value">0</span>
                 </div>
+                <div class="stat-card">
+                    <span class="stat-label">Total Orders</span>
+                    <span id="totalOrders" class="stat-value">0</span>
+                </div>
             </div>
 
             <div class="table-container">
@@ -61,6 +65,32 @@
                         <!-- Products will be loaded here -->
                         <tr>
                             <td colspan="4" class="loader">Loading your workspace...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="orders-section">
+            <header class="dashboard-header">
+                <div>
+                    <h2>Recent <span>Orders</span></h2>
+                    <p>View and manage incoming customer orders.</p>
+                </div>
+            </header>
+            <div class="table-container">
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Customer Phone</th>
+                            <th>Order Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dashboardOrderGrid">
+                        <tr>
+                            <td colspan="4" class="loader">Loading orders...</td>
                         </tr>
                     </tbody>
                 </table>

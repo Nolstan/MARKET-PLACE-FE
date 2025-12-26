@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>All Users</h1>
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Business Name</th>
+                    <th>Owner Name</th>
+                    <th>Email</th>
+                    <th>Location</th>
+                    <th>Contact Info</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="usersGrid">
+                <!-- Users will be loaded here -->
+                <tr>
+                    <td colspan="5" class="loader">Loading users...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="users.js"></script>
+</body>
+
+</html>

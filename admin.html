@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Local Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="dashboard-body">
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar" id="sidebar">
+            <div class="admin-sidebar-header">
+                <h1 class="logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                    Local<span>Market</span>
+                    <span style="font-size: 0.8rem; display: block; color: var(--text-muted); font-weight: 400;">ADMIN
+                        PANEL</span>
+                </h1>
+            </div>
+            <nav class="admin-nav">
+                <a href="#" class="admin-nav-item active" data-section="users">
+                    <i class="fas fa-users"></i>
+                    <span>User Management</span>
+                </a>
+                <a href="#" class="admin-nav-item" data-section="products">
+                    <i class="fas fa-box"></i>
+                    <span>Product Control</span>
+                </a>
+                <a href="#" class="admin-nav-item" data-section="complaints">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Complaints</span>
+                </a>
+            </nav>
+            <div style="padding: 2rem;">
+                <button id="logoutBtn" class="btn-logout" style="width: 100%;">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+            <!-- Mobile Header -->
+            <div class="admin-mobile-header">
+                <button id="sidebarToggle" class="btn-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="mobile-logo">
+                    Store<span>Sync</span> Admin
+                </div>
+            </div>
+
+            <!-- User Management Section -->
+            <section id="users-section" class="admin-section active">
+                <header class="dashboard-header">
+                    <div>
+                        <h2>User <span>Management</span></h2>
+                        <p>Manage business owners and their account status.</p>
+                    </div>
+                    <div class="search-bar" style="max-width: 400px; margin: 0;">
+                        <input type="text" id="userSearchInput" placeholder="Search by name, email, or phone...">
+                        <button disabled><i class="fas fa-search"></i></button>
+                    </div>
+                </header>
+
+                <div class="admin-card">
+                    <div class="table-container">
+                        <table class="product-table">
+                            <thead>
+                                <tr>
+                                    <th>Business Name</th>
+                                    <th>Owner</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userTableBody">
+                                <!-- Users loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product Control Section -->
+            <section id="products-section" class="admin-section">
+                <header class="dashboard-header">
+                    <div>
+                        <h2>Product & Listing <span>Control</span></h2>
+                        <p>Review and manage all products across all shops.</p>
+                    </div>
+                </header>
+
+                <div id="productContainer">
+                    <!-- Products grouped by shop will appear here -->
+                </div>
+            </section>
+
+            <!-- Complaints Section -->
+            <section id="complaints-section" class="admin-section">
+                <header class="dashboard-header">
+                    <div>
+                        <h2>Complaint & Dispute <span>Handling</span></h2>
+                        <p>Address user issues and resolve conflicts.</p>
+                    </div>
+                </header>
+
+                <div class="admin-card">
+                    <div class="table-container">
+                        <table class="product-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Subject</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="complaintTableBody">
+                                <!-- Complaints loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Reset Password</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div id="modalBody">
+                <!-- Dynamic content -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary close-modal">Cancel</button>
+                <button type="button" id="modalConfirmBtn" class="btn-submit">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>

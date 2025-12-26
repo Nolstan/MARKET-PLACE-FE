@@ -10,6 +10,7 @@ if (!shopId) {
 
 // UI Elements
 const productGrid = document.getElementById('dashboardProductGrid');
+const orderGrid = document.getElementById('dashboardOrderGrid');
 const productForm = document.getElementById('productForm');
 const modal = document.getElementById('productModal');
 const modalTitle = document.getElementById('modalTitle');
@@ -17,6 +18,7 @@ const closeModalBtns = document.querySelectorAll('.close-modal');
 const openModalBtn = document.getElementById('openAddModal');
 const shopNameDisplay = document.getElementById('shopNameDisplay');
 const totalProductsLabel = document.getElementById('totalProducts');
+const totalOrdersLabel = document.getElementById('totalOrders');
 const activeStatusToggle = document.getElementById('activeStatusToggle');
 
 
@@ -26,6 +28,7 @@ const activeStatusToggle = document.getElementById('activeStatusToggle');
 async function init() {
     await loadShopDetails();
     await loadProducts();
+    await loadOrders();
 }
 
 /**
@@ -34,6 +37,12 @@ async function init() {
 async function loadShopDetails() {
     try {
         const response = await fetch(`${API_URL}/business/${shopId}`);
+        if (response.status === 403) {
+            alert('Your account is banned. Please contact your service provider.');
+            localStorage.clear();
+            window.location.href = 'login.html';
+            return;
+        }
         const data = await response.json();
         if (data.success) {
             shopNameDisplay.innerText = data.data.businessName;
@@ -63,7 +72,27 @@ async function loadProducts() {
 }
 
 /**
- * Render Table Rows
+ * Fetch and Render Orders
+ */
+async function loadOrders() {
+    const token = localStorage.getItem('token');
+    try {
+        const response = await fetch(`${API_URL}/orders`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await response.json();
+        if (data.success) {
+            renderOrders(data.data);
+            totalOrdersLabel.innerText = data.data.length;
+        }
+    } catch (error) {
+        console.error('Error loading orders:', error);
+        orderGrid.innerHTML = '<tr><td colspan="4" class="error">Failed to load orders.</td></tr>';
+    }
+}
+
+/**
+ * Render Product Table Rows
  */
 function renderProducts(products) {
     if (products.length === 0) {
@@ -88,6 +117,29 @@ function renderProducts(products) {
                 <div class="actions">
                     <button onclick="editProduct('${product._id}')" class="btn-edit">Edit</button>
                     <button onclick="deleteProduct('${product._id}')" class="btn-delete">Delete</button>
+                </div>
+            </td>
+        </tr>
+    `).join('');
+}
+
+/**
+ * Render Order Table Rows
+ */
+function renderOrders(orders) {
+    if (orders.length === 0) {
+        orderGrid.innerHTML = '<tr><td colspan="4" class="loader">You have no orders yet.</td></tr>';
+        return;
+    }
+
+    orderGrid.innerHTML = orders.map(order => `
+        <tr>
+            <td data-label="Product Name">${order.productId ? order.productId.name : 'Product not found'}</td>
+            <td data-label="Customer Phone">${order.customerPhone}</td>
+            <td data-label="Order Date">${new Date(order.createdAt).toLocaleDateString()}</td>
+            <td data-label="Actions">
+                <div class="actions">
+                    <button onclick="deleteOrder('${order._id}')" class="btn-delete">Delete</button>
                 </div>
             </td>
         </tr>
@@ -187,6 +239,33 @@ window.deleteProduct = async (id) => {
         }
     } catch (error) {
         console.error('Error deleting product:', error);
+    }
+};
+
+/**
+ * Delete Order
+ */
+window.deleteOrder = async (id) => {
+    if (!confirm('Are you sure you want to delete this order?')) return;
+
+    const token = localStorage.getItem('token');
+
+    try {
+        const response = await fetch(`${API_URL}/orders/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        const data = await response.json();
+        if (data.success) {
+            loadOrders();
+        } else {
+            alert(data.error || 'Failed to delete order.');
+        }
+    } catch (error) {
+        console.error('Error deleting order:', error);
+        alert('An error occurred while deleting the order.');
     }
 };
 
